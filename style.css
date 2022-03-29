@@ -10,6 +10,7 @@
     --color-danger: hsl(0, 95%, 65%);
     --color-dark: hsl(252, 30%, 17%);
     --color-black: hsl(252, 30%, 10%);
+    --color-background: #f6f6f9;
 
     --border-radius: 2rem;
     --card-border-radius: 1rem;
@@ -17,11 +18,24 @@
     --search-padding: 0.6rem 1rem;
     --card-padding: 1rem;
 
+    --border-radius-1: 0.4rem; 
+    --border-radius-2: 0.8rem; 
+    --border-radius-3: 1.2rem;
+
+
     --sticky-top-left: 5.4rem;
     --sticky-top-right: -18rem;
 
 
 }
+.dark-theme-variables {
+    --color-background: #181a1e;
+    --color-white: #202528;
+    --color-dark: #edeffd;
+    --color-dark-variant: #a3bdcc;
+    --color-light: Orgba(0, 0, 0, 0.4);
+    --box-shadow: 0 2rem 3rem var(--color-light);
+    }
 
 
 
@@ -40,6 +54,7 @@ body {
     color: var(--color-dark);
     background-color: var(--color-light);
     overflow-x: hidden;
+    background: var(--color-background);
 
 }
 
@@ -136,6 +151,35 @@ nav .create {
     display: flex;
     align-items: center;
     gap: 2rem;
+
+}
+
+nav .theme-toggler{
+    background: var(--color-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 1.6rem;
+    width: 4.2rem;
+    cursor: pointer;
+    border-radius: var(--border-radius-1);
+    transition: all 300ms ease;
+
+}
+
+nav .theme-toggler span{
+    font-size: 1.2rem;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav .theme-toggler span.active{
+    background: var(--color-primary);
+    color: white;
+    border-radius: var(--border-radius-1);
 
 }
 
@@ -378,4 +422,122 @@ main .container .left .profile {
 
 .middle .liked-by p {
     margin-left: 0.5rem;
+}
+
+/* --------------------- RIGHT -------------------------  */
+main .container .right {
+    height: max-content;
+    position: sticky;
+    top: var(--sticky-top-right);
+    bottom: 0;
+}
+
+.right .friend-reuqests {
+    margin-top: 1rem;
+
+}
+
+.right .friend-requests h4 {
+    color: var(--color-gray);
+    margin: 1rem 0;
+}
+
+.right .request {
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-bottom: 0.7rem;
+}
+
+.right .request .info {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.right .request .action {
+    display: flex;
+    gap: 1rem;
+}
+
+
+/* ------------------- MEDIA QUERIES SMALL LAPTOPS AND TABLETS --------------------------------  */
+
+
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 96%;
+    }
+
+    main .container {
+        grid-template-columns: 5rem auto 30vw;
+        gap: 1rem;
+    }
+
+    .left {
+        width: 5rem;
+        z-index: 5;
+    }
+
+    main .container .left .profile {
+        display: none;
+    }
+
+    .sidebar h3 {
+        display: none;
+    }
+
+    .left .btn {
+        display: none;
+    }
+
+}
+
+
+/* ------------------- MEDIA QUERIES SMALL Tablet AND Mobile --------------------------------  */
+
+@media screen and (max-width: 992px) {
+    nav .search-bar {
+        display: none;
+    }
+
+    nav .create {
+        display: none;
+    
+    }
+
+    main .container {
+        grid-template-columns: 0 auto 5rem;
+    }
+
+    main .container .left {
+        grid-column: 3/4;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        
+    }
+
+    /* ------------- NOTIFICATION popup --------------------  */
+
+    .left .notifications-popup {
+        position: absolute;
+        left: -20rem;
+        width: 20rem;
+    }
+
+    .left .notifications-popup::before {
+        display: absolute;
+        top: 1.3rem;
+        left: calc(20rem - 0.6rem);
+        display: block;
+    }
+
+    main .container .middle {
+        grid-column: 1/3;
+    }
+
+    main .container .right {
+        display: none;
+    }
 }
